@@ -6,4 +6,8 @@
 
 https://github.com/go-pattern/pattern
 
-Author: [Charney Kaye](http://w.charney.io)
+##### Credit
+
+[Charney Kaye](http://w.charney.io)
+
+[Outright Mental](http://w.outright.io)

@@ -1,4 +1,7 @@
 // Patterns of music in Go
+//
+// Credit
+
 package pattern
 
 import (
