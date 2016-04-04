@@ -2,7 +2,7 @@
 
 # Pattern
 
-## Simple Musical Notation Language for Go
+## Musical Pattern-to-Notes Language, parsed in Go
 
 https://github.com/go-pattern/pattern
 
@@ -11,3 +11,42 @@ https://github.com/go-pattern/pattern
 [Charney Kaye](http://w.charney.io)
 
 [Outright Mental](http://w.outright.io)
+
+### Time
+
+To the X.J.Ontic API, time is specified as a time.Duration-since-epoch, where the epoch is the moment that player.Start() was called.
+
+Internally, time is tracked as samples-since-epoch at the master output playback frequency (e.g. 48000 Hz). This is most efficient because source audio is pre-converted to the master output playback frequency, and all audio maths are performed in terms of samples.
+
+### Patterns
+
+1. Pattern is split into words (split on space " ")
+2. Each word is parsed using regex to see if any of the following functions apply.
+
+#### xN 
+
+Repeats a note, e.g. `x2`:
+
+    KCKx2 SNR MRCx2 KCK SNR
+
+is equivalent to:
+
+    KCK KCK SNR MRC MRC KCK SNR
+
+#### Pick
+
+Pick one note randomly from this comma-separated set, e.g. `[MRC,HAT]`:
+
+    KCK [MRC,HAT] SNR [MRC,HAT]x2 KCK SNR [MRC,HAT]
+
+#### Shuffle
+
+Shuffle randomly and play each of the notes once, from this hyphen-separated set e.g. `-SNR-MRC-HAT-`
+
+    KCK HAT -SNR-MRC-HAT-KCK-SNR-MRC-
+
+#### Scratch
+
+Randomly "scratch" beginning, end, how much, backwards/forwards, count
+
+    T.B.D.
